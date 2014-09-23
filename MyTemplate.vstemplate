@@ -22,6 +22,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.css">bootstrap.css</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="bootstrap.min.css">bootstrap.min.css</ProjectItem>
       </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Criptografia.cs">Criptografia.cs</ProjectItem>
       <Folder Name="fonts" TargetFolderName="fonts">
         <ProjectItem ReplaceParameters="false" TargetFileName="glyphicons-halflings-regular.eot">glyphicons-halflings-regular.eot</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="glyphicons-halflings-regular.svg">glyphicons-halflings-regular.svg</ProjectItem>
@@ -42,7 +43,8 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery-1.9.0.js">jquery-1.9.0.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery-1.9.0.min.js">jquery-1.9.0.min.js</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="jquery-1.9.0.min.map">jquery-1.9.0.min.map</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="mascara.js">mascara.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate.js">jquery.validate.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="valida.js">valida.js</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="Usuario.cs">Usuario.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="ValidaCadastro.cs">ValidaCadastro.cs</ProjectItem>

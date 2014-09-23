@@ -26,6 +26,10 @@ namespace $safeprojectname$
             usuario.Senha = Request.Form["senha"];
             usuario.ConfSenha = Request.Form["confSenha"];
 
+            //  classe valida dados
+            ValidaCadastro valida = new ValidaCadastro();
+
+            resultado.Text = valida.cadastraUsuario(usuario);
      
         }
     }

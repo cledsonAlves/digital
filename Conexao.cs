@@ -4,46 +4,60 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
-namespace Persistencia
+namespace $safeprojectname$
+
+    /* Classe Responsável pela conexão com o banco de dados */
 {
-    public static class Conexao
+    public class Conexao
     {
-        public static SqlConnection conexao = new SqlConnection();
-        public static void AbrirConexao()
+        private SqlConnection Conection;
+        private DataSet DSet;
+        string conec = "Data Source=LOCALHOST;Initial Catalog=$safeprojectname$;User ID=Cledson;Password=151185;Language=Portuguese";
+
+
+        // abro a conexão no  construtor e os métodos ficam encarregados de fecha-la .
+        public Conexao()
         {
-            conexao.ConnectionString = @"Data Source=SERVIDOR_012\SQL2008;Initial Catalog=shalom;Persist Security Info=True;User ID=paulo;Password=elevem_123456";
-            conexao.Open();
+            Conection = new SqlConnection(conec);
+            try
+            {
+                //abre a conexao
+                Conection.Open();
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.Message.ToString());
+            }
+
         }
 
-        public static void FecharConexao()
+
+
+        //  Cadastra usuário no banco 
+        public bool cadastraUsuario(Usuario usuario)
         {
-            if (conexao.State == ConnectionState.Open)
+            // Verifica se a conexão esta aberta
+            if (Conection.State == ConnectionState.Open)
             {
-                conexao.Close(); conexao.Dispose();
+
+                Criptografia c = new Criptografia();
+                String senha = c.AcertaSenha(usuario.Senha);
+                //Query SQL
+                SqlCommand command = new SqlCommand("INSERT INTO usuario (email,nome,sobrenome,senha)" +
+                "VALUES('" + usuario.Email + "','" + usuario.Nome + "','" + usuario.Sobrenome + "','" + senha + "')", Conection);
+                //Executa a Query SQL
+                command.ExecuteNonQuery();
+                // Fecha a conexão
+                Conection.Close();
+                return true;
+            }
+            else
+            {
+                return  false;
             }
         }
-        public static void ExecutarComando(string textoComando)
-        {
-            if (conexao.State != ConnectionState.Open)
-            {
-                AbrirConexao();
-            } SqlCommand comando = new SqlCommand(); comando.CommandText = textoComando; comando.Connection = conexao; int registrosAfetados = comando.ExecuteNonQuery();
-        }
-        public static SqlDataReader SelecionarRegistros(string textoComando)
-        {
-            if (conexao.State != ConnectionState.Open)
-            {
-                AbrirConexao();
-            } SqlCommand comando = new SqlCommand(); comando.CommandText = textoComando; comando.Connection = conexao; return comando.ExecuteReader();
-        }
-        public static SqlDataReader SelecionarUmRegistro(string textoComando)
-        {
-            if (conexao.State != ConnectionState.Open)
-            {
-                AbrirConexao();
-            } SqlCommand comando = new SqlCommand();
-            comando.CommandText = textoComando;
-            comando.Connection = conexao; return (SqlDataReader)comando.ExecuteScalar();
-        }
+
+
     }
+
 }
